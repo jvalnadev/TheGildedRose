@@ -1,0 +1,112 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css" />
+    <style>
+        pre {
+            background-color: #adaaaa;
+            max-height: 300px;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+        .m-lr-0{
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body ng-app="SampleGildedRose" ng-cloak ng-controller="RootController">
+    <!--
+      Your HTML content here
+    -->
+    <md-toolbar class="md-primary">
+        <h2 class="md-toolbar-tools">
+            <span>The Gilded Rose - API Call Test</span>
+        </h2>
+    </md-toolbar>
+    <md-content layout-padding flex>
+        <md-list flex layout="column">
+            <h4 class="md-no-sticky">Get Inventory - API Call</h4>
+
+            <md-divider></md-divider>
+            <pre>{{GetInventory_Results | json}}</pre>
+            <md-button class="md-primary md-raised m-lr-0" ng-click="GetInventory();" flex>Get Inventory</md-button>
+        </md-list>
+        <br />
+        <md-list flex layout="column">
+            <h4 class="md-no-sticky">Buy Item - API Call</h4>
+
+            <md-divider></md-divider>
+            <div layout="row">
+                <div layout="column" flex="50">
+                    <md-input-container flex>
+                        <label>Username</label>
+                        <input ng-model="Transaction.User.Username">
+                    </md-input-container>
+                    <md-input-container flex>
+                        <label>API Access Token</label>
+                        <input ng-model="Transaction.User.APIAccessToken">
+                    </md-input-container>
+                    <md-input-container flex>
+                        <label>Item ID</label>
+                        <input ng-model="Transaction.Item.ID">
+                    </md-input-container>
+                    <md-input-container flex>
+                        <label>Item Quantity</label>
+                        <input ng-model="Transaction.Item.Quantity">
+                    </md-input-container>
+                    <md-button class="md-raised md-primary m-lr-0" ng-click="BuyItem();">Buy Item</md-button>
+                </div>
+                <div layout="column" flex="50">
+                    <pre flex>{{BuyItem_Results | json}}</pre>
+                </div>
+            </div>
+
+        </md-list>
+
+    </md-content>
+
+
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
+
+    <script type="text/javascript">
+
+        angular.module('SampleGildedRose', ['ngMaterial'])
+        .controller('RootController', ['$scope', '$http', function ($scope, $http) {
+
+            //I- Variable Initializations
+            $scope.GetInventory_Results = "No data retrieved.";
+            $scope.Transaction = {};
+            $scope.Transaction.User = {};
+            $scope.Transaction.Item = {};
+            $scope.Transaction.User.Username = "kennykolstad";
+            $scope.Transaction.User.APIAccessToken = "af3ee1ad42ef87c8d9939b63db895283c900ab9bb46037060014a0b457bcee07";
+            $scope.Transaction.Item.ID = 1;
+            $scope.Transaction.Item.Quantity = 3;
+
+            //II- Functions
+            //1. GetInventory
+            $scope.GetInventory = function () {
+                $http.get('/api/inventory/getinventory').then(function (data) {
+                    $scope.GetInventory_Results = data;
+                },
+                function (error) { });
+            }
+            //2. BuyItem
+            $scope.BuyItem = function () {
+                var data = $scope.Transaction;
+                $http.post('/api/inventory/buyitem',data).then(function (data) {
+                    $scope.BuyItem_Results = data;
+                },
+                function (error) { });
+            }
+        }]);
+    </script>
+
+</body>
+</html>
