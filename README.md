@@ -118,9 +118,8 @@ In addition to this, I included an html page, **index.html**, which has a sample
 
 ### VI - Usage
 To open this project in Visual Studio follow the steps below:
-* Download the zip file package included in this github repo.
-* Extract / Unzip to your local folder
-* Double click on the solution file to load the solution
+* Open Visual Studio 2015 or later preferably (Make sure you have the github extension installed)
+* Clone the project and launch the solution
 * Build the solution
 * Run the project and launch ***index.html*** or run ***TheGildedRose.Tests*** project to verify results.
 
