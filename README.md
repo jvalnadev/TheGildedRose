@@ -123,6 +123,4 @@ To open this project in Visual Studio follow the steps below:
 * Build the solution
 * Run the project and launch ***index.html*** or run ***TheGildedRose.Tests*** project to verify results.
 
-***Thank you for taking the time to review this.***
-
 ***Tony***
