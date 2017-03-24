@@ -1,6 +1,6 @@
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Tudor_Rose_Royal_Badge_of_England.svg/2000px-Tudor_Rose_Royal_Badge_of_England.svg.png" width="100" height="150" /> 
-# The Gilded Rose Project
-### I - Introduction
+#The Gilded Rose Project
+###I - Introduction
 The Gilded Rose solution is a .NET 4.5 Web API 2 project developed using C# to help Allison, a shopkeeper to expand her store by offering to her merchants in other cities access to her shop's inventory via HTTP. 
 
 The API exposes 2 HTTP functions:
